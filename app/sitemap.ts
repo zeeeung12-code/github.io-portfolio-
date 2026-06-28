@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 
-const BASE = "https://kimjieun.vercel.app";
+export const dynamic = "force-static";
+
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://kimjieun.github.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/about", "/work", "/contact"].map((path) => ({

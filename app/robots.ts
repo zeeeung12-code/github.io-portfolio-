@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://kimjieun.github.io";
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://kimjieun.vercel.app/sitemap.xml",
+    sitemap: `${base}/sitemap.xml`,
   };
 }

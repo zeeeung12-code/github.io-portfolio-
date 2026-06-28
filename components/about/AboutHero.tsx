@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FiArrowDown } from "react-icons/fi";
 import { aboutHero } from "@/data/about";
+import { withBase } from "@/lib/base-path";
 
 const fade = {
   initial: { opacity: 0, y: 20 },
@@ -57,7 +58,7 @@ export default function AboutHero() {
               </p>
             ))}
             <a
-              href="/Kim_Jieun_Resume.pdf"
+              href={withBase("/Kim_Jieun_Resume.pdf")}
               download="김지은_포트폴리오_브랜드디자인.pdf"
               className="group mt-4 flex items-center gap-2 rounded-full bg-cream px-6 py-2.5 text-xs font-medium tracking-[0.1em] text-ink transition-colors hover:bg-accent"
             >

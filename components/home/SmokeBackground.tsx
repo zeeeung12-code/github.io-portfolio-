@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
+import { withBase } from "@/lib/base-path";
 
 /**
  * Hero backdrop. Uses the finished smoke + hanja composite supplied by the
@@ -34,7 +35,7 @@ export default function SmokeBackground() {
           x,
           y,
           scale: 1.08,
-          backgroundImage: "url(/images/home/hero.webp)",
+          backgroundImage: `url(${withBase("/images/home/hero.webp")})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

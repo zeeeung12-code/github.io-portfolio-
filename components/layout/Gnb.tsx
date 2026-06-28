@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import { nav, site } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { withBase } from "@/lib/base-path";
 
 export default function Gnb() {
   const pathname = usePathname();
@@ -68,7 +69,7 @@ export default function Gnb() {
         {/* Resume + mobile toggle */}
         <div className="flex items-center gap-4">
           <a
-            href="/Kim_Jieun_Resume.pdf"
+            href={withBase("/Kim_Jieun_Resume.pdf")}
             download="김지은_포트폴리오_브랜드디자인.pdf"
             className="group hidden items-center gap-1.5 rounded-full border border-cream/30 px-5 py-2 text-[11px] tracking-[0.15em] text-cream transition-colors hover:border-accent hover:text-accent sm:flex"
           >
@@ -125,7 +126,7 @@ export default function Gnb() {
               </motion.div>
             ))}
             <a
-              href="/Kim_Jieun_Resume.pdf"
+              href={withBase("/Kim_Jieun_Resume.pdf")}
               download="김지은_포트폴리오_브랜드디자인.pdf"
               className="mt-4 flex items-center gap-1.5 rounded-full border border-cream/30 px-6 py-2.5 text-sm tracking-[0.15em] text-cream"
             >
