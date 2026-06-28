@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import { featuredProjects } from "@/data/projects";
+import { withBase } from "@/lib/base-path";
 import type { Project } from "@/types";
 
 export default function SelectedWork() {
@@ -56,7 +57,7 @@ function WorkRow({ project, index }: { project: Project; index: number }) {
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
-            src={project.cover}
+            src={withBase(project.cover)}
             alt={project.title}
             fill
             priority={index === 0}

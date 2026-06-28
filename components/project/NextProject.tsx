@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
+import { withBase } from "@/lib/base-path";
 import type { Project } from "@/types";
 
 export default function NextProject({ project }: { project: Project }) {
@@ -16,7 +17,7 @@ export default function NextProject({ project }: { project: Project }) {
       >
         <div className="absolute inset-0">
           <Image
-            src={project.cover}
+            src={withBase(project.cover)}
             alt={project.title}
             fill
             quality={90}

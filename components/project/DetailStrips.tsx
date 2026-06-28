@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import type { DetailStrip } from "@/data/details";
+import { withBase } from "@/lib/base-path";
 
 function Cover({ strip }: { strip: DetailStrip }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ function Cover({ strip }: { strip: DetailStrip }) {
       <motion.div style={{ y }} className="absolute inset-0 scale-[1.13]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={strip.src}
+          src={withBase(strip.src)}
           alt="cover"
           className="h-full w-full object-cover"
           fetchPriority="high"
@@ -49,7 +50,7 @@ export default function DetailStrips({ strips }: { strips: DetailStrip[] }) {
           className="-mt-px block"
         >
           <Image
-            src={s.src}
+            src={withBase(s.src)}
             alt=""
             width={s.w}
             height={s.h}

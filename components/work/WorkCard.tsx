@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
+import { withBase } from "@/lib/base-path";
 import type { Project } from "@/types";
 
 type Props = {
@@ -19,7 +20,7 @@ export default function WorkCard({ project, index, large = false }: Props) {
       {/* Image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-sm">
         <Image
-          src={project.card}
+          src={withBase(project.card)}
           alt={project.title}
           fill
           quality={90}
