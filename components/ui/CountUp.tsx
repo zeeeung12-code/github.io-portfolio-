@@ -13,17 +13,39 @@ type Props = {
 export default function CountUp({ value, duration = 1.4, className }: Props) {
   const target = parseInt(value, 10);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (!inView || Number.isNaN(target)) return;
+    if (Number.isNaN(target) || !inView) return;
+
+    // Respect reduced motion: jump straight to the final value.
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setDisplay(target);
+      return;
+    }
+
     const controls = animate(0, target, {
       duration,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (v) => setDisplay(Math.round(v)),
+      onComplete: () => setDisplay(target),
     });
-    return () => controls.stop();
+
+    // Safety net: guarantee the final value even if the animation is
+    // interrupted or an onUpdate frame is dropped.
+    const guard = window.setTimeout(
+      () => setDisplay(target),
+      duration * 1000 + 500,
+    );
+
+    return () => {
+      controls.stop();
+      window.clearTimeout(guard);
+    };
   }, [inView, target, duration]);
 
   return (
